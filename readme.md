@@ -1,3 +1,21 @@
+These are the project folder files and theme is also integrated.project is setup with sentinel package and google analytics package.
+
+
+
+1.upzip project 
+
+2.go to command prompt or terminal of ur machine and go to this directory.
+
+3. Write “php artisan serve” command this will give you host “localhost:8000"
+
+4. Check on browser.
+
+
+
+
+
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
