@@ -1,6 +1,7 @@
 <?php
 
 use Spatie\Analytics\Period;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +19,23 @@ Route::get('/', function () {
 });
 
 
+Route::get('/register', function(){
+	 return view('register');
+});
+
+
+
+Route::get('/login', function(){
+	 return view('login');
+});
+
+
+Route::get('/logout', 'Auth\LoginController@logout');
+
+Route::post('/register', 'Auth\RegisterController@registerUser');
+
+
+Route::post('/login', 'Auth\LoginController@loginIn');
 
 Route::get('/checkdata', function () {
    $analyticsData = Analytics::fetchVisitorsAndPageViews(Period::days(7));

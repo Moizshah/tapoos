@@ -88,7 +88,7 @@
                                 </a>
                             </li>
                             <li class="nav-item  ">
-                                <a href="layout_blank_page.html" class="nav-link ">
+                                <a href="/logout" class="nav-link ">
                                   
                                    <i class="fa fa-sign-out"></i>
                                     <span>Logout</span>

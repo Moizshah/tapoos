@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
+use Session,Activation,Validator,Reminder;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Illuminate\Http\Request;
+use Sentinel;
 class RegisterController extends Controller
 {
     /*
@@ -68,4 +69,77 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+
+
+    public function registerUser(Request $request){
+
+     $data = $request->all();
+
+         $credentials = [
+            'email' => $data['email']
+        ];
+        $userExisted = Sentinel::findByCredentials($credentials);
+        if ($userExisted) {
+
+            Session::flash('error', 'user is already register');
+           return redirect()->back();
+
+        } else {
+            $user = Sentinel::registerAndActivate([
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
+                'password' => $data['password'],
+                'permissions' => [
+                    'user.delete' => 0,
+                ]
+            ]);
+            $role = Sentinel::findRoleByName('User');
+            $role->users()->attach($user);
+            $public_id = uniqid();
+            //$userInfo = new UserInfo();
+
+         //   $userInfo->user_id = $user->id;
+         //   $userInfo->public_id =  $public_id;
+         //   $userInfo->gender = 1;
+
+            // try {
+            //    // $userInfo->save();
+               
+            // } catch (QueryException  $e) {
+
+            //       $ex->getMessage();
+            // }
+
+            // create a new activation for the registered user
+            $activation = (new \Cartalyst\Sentinel\Activations\IlluminateActivationRepository)->completed($user);
+     
+          
+            if (!$activation)
+            {
+                Session::flash('error' , "Wrong information provided. Pleae contact system Administrator.");
+
+                return redirect()->back();
+
+            } else {
+
+                $msg = 'Your account has been activated. Please setup your password.';
+                Session::flash('success' , $msg);
+                          return redirect()->back();
+
+            }
+
+    
+    
+
+        }
+
+    }
+
+
+
+
+
+
 }
