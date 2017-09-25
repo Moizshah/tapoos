@@ -14,12 +14,8 @@
             <div class="page-content page-content-popup">
                 <div class="page-content-fixed-header">
                     <!-- BEGIN BREADCRUMBS -->
-                    <ul class="page-breadcrumb">
-                        <li>
-                            <a href="#">Dashboard</a>
-                        </li>
-                        <li>Admin Dashboard</li>
-                    </ul>
+                    @yield('breadcrumb')
+                    
                     <!-- END BREADCRUMBS -->
                     <div class="content-header-menu">
                         <!-- BEGIN DROPDOWN AJAX MENU -->

@@ -62,8 +62,28 @@
                     <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="Password" name="password" /> </div>
                 <div class="form-group">
                     <label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
-                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="rpassword" /> </div>
-              
+                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Re-type Your Password" name="repassword" /> </div>
+                     <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">Cell Number</label>
+                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Cell Number" name="phone" /> </div>
+                    <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">Address</label>
+                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Address" name="address" /> </div>
+                     <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">Original Facebook Profile URL</label>
+                    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Original Facebook Profile URL" name="facebook_profile" /> </div>
+                     <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">About Your Experience</label>
+
+                    <textarea class="form-control" rows="3" name="experience" placeholder="About Your Experience" ></textarea>
+                   </div>
+                      <div class="form-group">
+                    <label class="control-label visible-ie8 visible-ie9">Owned Facebook pages URLsAbout Your Experience</label>
+
+
+                    <textarea class="form-control" rows="3" name="facebook_pages" placeholder="Owned Facebook pages URLs"></textarea>
+                  </div>
+
                 <div class="form-actions">
                    
                     <button type="submit" id="register-submit-btn" class="btn btn-success uppercase pull-right">Submit</button>

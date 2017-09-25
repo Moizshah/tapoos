@@ -76,7 +76,7 @@ class LoginController extends Controller
             if (Sentinel::authenticate($credentials , $remember))
             {
 
-                return redirect('/');
+                return redirect('/dashboard');
 
             }
 

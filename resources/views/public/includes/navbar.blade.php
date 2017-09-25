@@ -34,7 +34,7 @@
 
                                  
                             <li class="nav-item  ">
-                                <a href="layout_blank_page.html" class="nav-link ">
+                                <a href="/dashboard" class="nav-link ">
                                  
                                <i class="fa fa-dashboard"></i>
                                 <span>Dashboard</span>
@@ -68,21 +68,21 @@
                                 </a>
                             </li> 
                              <li class="nav-item  ">
-                                <a href="layout_blank_page.html" class="nav-link ">
+                                <a href="/submitlink" class="nav-link ">
                                    
                                    <i class="fa fa-pencil"></i>
                                      <span>Submit a Link</span>
                                 </a>
                             </li> 
                              <li class="nav-item  ">
-                                <a href="layout_blank_page.html" class="nav-link ">
+                                <a href="/paymentinfo" class="nav-link ">
                                     
                                  <i class="fa fa-info"></i>  
                                     <span>My Payment Info</span>
                                 </a>
                             </li>
                                 <li class="nav-item  ">
-                                <a href="layout_blank_page.html" class="nav-link ">
+                                <a href="/userprofile" class="nav-link ">
                                     <i class="fa fa-lock"></i> 
                                     <span>My Profile</span>
                                 </a>
@@ -95,12 +95,7 @@
                                 </a>
                             </li>
                           
-                            <li class="nav-item  ">
-                                <a href="layout_blank_page.html" class="nav-link ">
-                                    <i class="icon-layers"></i>
-                                    <span class="title">Blank Page</span>
-                                </a>
-                            </li>
+                            
                          <!--     <li class="heading">
                                 <h3 class="uppercase">Features</h3>
                             </li>

@@ -8,6 +8,7 @@ use Session,Activation,Validator,Reminder;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Sentinel;
+use App\UserProfile;
 class RegisterController extends Controller
 {
     /*
@@ -74,18 +75,22 @@ class RegisterController extends Controller
 
     public function registerUser(Request $request){
 
-     $data = $request->all();
+       $data = $request->all();
 
-         $credentials = [
-            'email' => $data['email']
-        ];
-        $userExisted = Sentinel::findByCredentials($credentials);
-        if ($userExisted) {
+       $credentials = [
+        'email' => $data['email']
+    ];
+    $userExisted = Sentinel::findByCredentials($credentials);
+    if ($userExisted) {
 
-            Session::flash('error', 'user is already register');
-           return redirect()->back();
+        Session::flash('error', 'user is already register');
+        return redirect()->back();
 
-        } else {
+    } else {
+        if($data['password'] == $data['repassword']){
+
+
+
             $user = Sentinel::registerAndActivate([
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
@@ -98,44 +103,54 @@ class RegisterController extends Controller
             $role = Sentinel::findRoleByName('User');
             $role->users()->attach($user);
             $public_id = uniqid();
-            //$userInfo = new UserInfo();
+            $userProfile = new UserProfile();
 
-         //   $userInfo->user_id = $user->id;
-         //   $userInfo->public_id =  $public_id;
-         //   $userInfo->gender = 1;
+            $userProfile->user_id = $user->id;
+            $userProfile->phone =  $data['phone'];
+            $userProfile->address =  $data['address'];
+            $userProfile->facebook_profile =  $data['facebook_profile'];
+            $userProfile->experience =  $data['experience'];
+            $userProfile->facebook_pages =  $data['facebook_pages'];
+            
 
-            // try {
-            //    // $userInfo->save();
-               
-            // } catch (QueryException  $e) {
+            try {
+             $userProfile->save();
+             
+         } catch (QueryException  $e) {
 
-            //       $ex->getMessage();
-            // }
+          $ex->getMessage();
+      }
 
             // create a new activation for the registered user
-            $activation = (new \Cartalyst\Sentinel\Activations\IlluminateActivationRepository)->completed($user);
-     
-          
-            if (!$activation)
-            {
-                Session::flash('error' , "Wrong information provided. Pleae contact system Administrator.");
+      $activation = (new \Cartalyst\Sentinel\Activations\IlluminateActivationRepository)->completed($user);
+      
+      
+      if (!$activation)
+      {
+        Session::flash('error' , "Wrong information provided. Pleae contact system Administrator.");
 
-                return redirect()->back();
+        return redirect()->back();
 
-            } else {
+    } else {
 
-                $msg = 'Your account has been activated. Please setup your password.';
-                Session::flash('success' , $msg);
-                          return redirect()->back();
-
-            }
-
-    
-    
-
-        }
+        $msg = 'Your account has been activated. Please login to your account.';
+        Session::flash('success' , $msg);
+        return redirect('/login');
 
     }
+
+}else{
+
+    $msg = 'Password does not match';
+    Session::flash('error' , $msg);
+    return redirect()->back();
+}
+
+
+
+}
+
+}
 
 
 
