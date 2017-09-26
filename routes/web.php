@@ -18,6 +18,15 @@ Route::get('/', function () {
 	  return view('public/profile');
 });
 
+Route::get('/sendmail', function () {
+	$data [] = '';
+	$email = 'atif.riaz.dev@gmail.com';
+    Mail::send('login', $data, function($message) use ($email) {
+    $message->to($email)->subject('ok');
+});
+	return "ok";
+});
+
 
 Route::get('/register', function(){
 	 return view('register');
