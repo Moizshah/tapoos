@@ -16,6 +16,7 @@ class CreateBlogWebsiteAttachmentTable extends Migration
         
         Schema::create('website_attachment', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->string('name');
             $table->string('rss_link');
             $table->timestamps();
@@ -29,6 +30,6 @@ class CreateBlogWebsiteAttachmentTable extends Migration
      */
     public function down()
     {
-          Schema::dropIfExists('website_attachment');
-    }
+      Schema::dropIfExists('website_attachment');
+  }
 }
